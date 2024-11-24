@@ -8,4 +8,6 @@ public interface ToyRepository {
     void addToy(Toy toy);
 
     List<Toy> getAllToys();
+
+    void removeToyById(String toyId);
 }

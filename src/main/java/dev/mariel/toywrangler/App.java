@@ -42,9 +42,13 @@ public class App {
                                 break;
 
                             case 3:
+                                toyController.removeToyFromInventory(scanner);
+                                break;
+
+                            /* case 4:
                                 toyView.showSessionClosedMessage();
                                 scanner.close();
-                                return;
+                                return; */
 
                             default:
                                 toyView.showError("Opción no válida.");

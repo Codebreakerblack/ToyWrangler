@@ -41,4 +41,22 @@ public class ToyRepositoryImpl implements ToyRepository {
     public String getNextBadToyId() {
         return "M" + badToyCounter;
     }
+
+    @Override
+    public void removeToyById(String toyId) {
+        boolean removed = false;
+        for (Toy toy : toys) {
+            String toyIdentifier = (toy instanceof GoodToy) ? "B" + goodToyCounter : "M" + badToyCounter;
+
+            if (toyIdentifier.equals(toyId)) {
+                toys.remove(toy);
+                removed = true;
+                break;
+            }
+        }
+
+        if (!removed) {
+            throw new IllegalArgumentException("No se encontró un juguete con el identificador: " + toyId);
+        }
+    }
 }

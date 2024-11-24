@@ -24,10 +24,11 @@ public class ToyView {
 
     public void showElfMenu() {
         System.out.println("\n-----------");
-        System.out.println("Gestor de Juguetes (Tipo de sesión: Elfo)");
+        System.out.println("Gestor de juguetes (Tipo de sesión: Elfo)");
         System.out.println("1. Añadir juguete");
         System.out.println("2. Ver todos los juguetes");
-        System.out.println("3. Cerrar sesión");
+        System.out.println("3. Eliminar juguete");
+        System.out.println("4. Cerrar sesión");
         System.out.print("Seleccione una opción: ");
     }
 
@@ -39,17 +40,12 @@ public class ToyView {
         System.out.print("Seleccione una opción: ");
     }
 
-    public String getInput(String message, Scanner scanner) {
-        System.out.print(message);
-        return scanner.nextLine();
-    }
-
     public void showAllToys() {
         List<Toy> toys = toyRepository.getAllToys();
-            if (toys.isEmpty()) {
-                System.out.println("No hay juguetes disponibles.");
+        if (toys.isEmpty()) {
+                System.out.println("\nNo hay juguetes disponibles.");
             } else {
-                System.out.println("Lista de juguetes:");
+                System.out.println("\nLista de juguetes:");
                 int goodToyCounter = 1;
                 int badToyCounter = 1;
 
@@ -71,15 +67,28 @@ public class ToyView {
         }
     }
 
+    public void showRemoveToyPrompt() {
+        System.out.print("\nIngrese el identificador del juguete a eliminar: ");
+    }
+
     public void showConfirmation(String message) {
         System.out.println(message);
     }
 
-    public void showError(String message) {
-        System.out.println("Error: " + message);
+    public void showToyRemovedMessage() {
+        System.out.println("Juguete eliminado con éxito");
     }
 
-    public void showSessionClosedMessage() {
-        System.out.println("Sesión cerrada. ¡Hasta luego!");
+    public void showError(String message) {
+        System.out.println("ERROR: " + message);
+    }
+
+    public String getInput(String prompt, Scanner scanner) {
+        System.out.print(prompt);
+        return scanner.nextLine();
+    }
+
+    public void showAllToys(List<Toy> toys) {
+        throw new UnsupportedOperationException("Unimplemented method 'showAllToys'");
     }
 }
