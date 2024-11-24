@@ -14,13 +14,15 @@ public class App {
         ToyView toyView = new ToyView(toyRepository);
         ToyController toyController = new ToyController(toyRepository, toyView);
 
-        while (true) {
+        boolean isRunning = true;
+        while (isRunning) {
             toyView.showInitialMenu();
             try {
                 int userType = Integer.parseInt(toyView.getInput("", scanner));
 
                 if (userType == 1) {
-                    while (true) {
+                    boolean elfSessionActive = true;
+                    while (elfSessionActive) {
                         toyView.showElfMenu();
                         int elfChoice = Integer.parseInt(toyView.getInput("", scanner));
 
@@ -45,10 +47,10 @@ public class App {
                                 toyController.removeToyFromInventory(scanner);
                                 break;
 
-                            /* case 4:
+                            case 4:
                                 toyView.showSessionClosedMessage();
-                                scanner.close();
-                                return; */
+                                elfSessionActive = false;
+                                break;
 
                             default:
                                 toyView.showError("Opción no válida.");

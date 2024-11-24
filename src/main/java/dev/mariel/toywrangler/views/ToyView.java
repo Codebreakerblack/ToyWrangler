@@ -16,7 +16,7 @@ public class ToyView {
     }
 
     public void showInitialMenu() {
-        System.out.println("Iniciar sesión de trabajo como:");
+        System.out.println("\nIniciar sesión de trabajo como:");
         System.out.println("1. Elfo");
         System.out.println("2. Santa Claus");
         System.out.print("Seleccione una opción: ");
@@ -67,16 +67,8 @@ public class ToyView {
         }
     }
 
-    public void showRemoveToyPrompt() {
-        System.out.print("\nIngrese el identificador del juguete a eliminar: ");
-    }
-
     public void showConfirmation(String message) {
         System.out.println(message);
-    }
-
-    public void showToyRemovedMessage() {
-        System.out.println("Juguete eliminado con éxito");
     }
 
     public void showError(String message) {
@@ -91,4 +83,17 @@ public class ToyView {
     public void showAllToys(List<Toy> toys) {
         throw new UnsupportedOperationException("Unimplemented method 'showAllToys'");
     }
+
+    public void showRemoveToyPrompt() {
+        System.out.print("\nIngrese el identificador del juguete a eliminar: ");
+    }
+
+    public void showToyRemovedMessage() {
+        System.out.println("Juguete eliminado con éxito");
+    }
+
+    public void showSessionClosedMessage() {
+        System.out.println("\nSesión cerrada correctamente.");
+    }
+
 }
