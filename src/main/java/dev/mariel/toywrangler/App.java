@@ -8,48 +8,53 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        // Crear una instancia de Scanner en App
         Scanner scanner = new Scanner(System.in);
 
-        // Inicializar los componentes del MVC
         ToyRepositoryImpl toyRepository = new ToyRepositoryImpl();
         ToyView toyView = new ToyView();
         ToyController toyController = new ToyController(toyRepository, toyView);
 
         while (true) {
-            toyView.showInitialMenu(); // Menú inicial
+            toyView.showInitialMenu();
             try {
                 int userType = Integer.parseInt(toyView.getInput("", scanner));
 
-                if (userType == 1) { // Elfo
+                if (userType == 1) {
                     while (true) {
-                        toyView.showElfMenu(); // Menú del Elfo
+                        toyView.showElfMenu();
                         int elfChoice = Integer.parseInt(toyView.getInput("", scanner));
 
                         switch (elfChoice) {
                             case 1:
-                                // Mostrar menú para tipo de juguete (bueno o malo)
                                 toyView.showToyTypeMenu();
                                 int toyType = Integer.parseInt(toyView.getInput("", scanner));
-
-                                // Solo permitimos agregar juguete para niño bueno
+                                
                                 if (toyType == 1) {
-                                    toyController.addGoodToyToInventory(scanner); // Pasar el scanner al controlador
-                                                                                  // para registrar el juguete
-                                    break; // Regresar al menú principal del Elfo
+                                    toyController.addGoodToyToInventory(scanner);
+                                    break;
+                                } else if (toyType == 2) {
+                                    toyController.addBadToyToInventory(scanner);
+                                    break;
                                 } else {
-                                    toyView.showError("Funcionalidad para niños malos no implementada.");
-                                    break; // Regresar al menú principal del Elfo
+                                    toyView.showError("Opción no válida. Intente nuevamente.");
+                                    break;
                                 }
 
                             case 2:
-                                toyController.showAllToys(); // Mostrar todos los juguetes
+                                toyController.showAllToys();
                                 break;
+                            
+                            /*
+                             * case 3:
+                             * deletetoy();
+                             * scanner.close();
+                             * return;
+                             */
 
-                            case 3:
-                                toyView.showSessionClosedMessage(); // Mensaje de cierre de sesión
-                                scanner.close(); // Cerrar el scanner antes de salir
-                                return; // Salir del ciclo y terminar el programa
+                            case 4:
+                                toyView.showSessionClosedMessage();
+                                scanner.close();
+                                return;
 
                             default:
                                 toyView.showError("Opción no válida. Intente nuevamente.");

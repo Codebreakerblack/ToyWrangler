@@ -1,14 +1,22 @@
 package dev.mariel.toywrangler.models;
 
-// Clase que extiende Toy para los juguetes para niños buenos
 public class GoodToy extends Toy {
-    private String recommendedAge; // Franja de edad recomendada
-    private String category; // Categoría del juguete
+    private String brand;
+    private String recommendedAge;
+    private String category;
 
     public GoodToy(String title, String brand, String recommendedAge, String category) {
-        super(title, brand);
+        super(title);
         this.recommendedAge = recommendedAge;
         this.category = category;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+    
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
     public String getRecommendedAge() {
@@ -28,7 +36,7 @@ public class GoodToy extends Toy {
     }
 
     @Override
-    public String toString() {
-        return super.toString() + ", Edad recomendada: " + recommendedAge + ", Categoría: " + category;
+    public String getDetails() {
+        return super.toString() + ", Marca: "+ brand + ", Edad recomendada: " + recommendedAge + ", Categoría: " + category;
     }
 }
