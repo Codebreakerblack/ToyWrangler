@@ -1,9 +1,19 @@
 package dev.mariel.toywrangler.views;
 
+import dev.mariel.toywrangler.models.BadToy;
+import dev.mariel.toywrangler.models.GoodToy;
 import dev.mariel.toywrangler.models.Toy;
+import dev.mariel.toywrangler.repositories.ToyRepository;
+
 import java.util.List;
+import java.util.Scanner;
 
 public class ToyView {
+    private ToyRepository toyRepository;
+
+    public ToyView(ToyRepository toyRepository) {
+        this.toyRepository = toyRepository;
+    }
 
     public void showInitialMenu() {
         System.out.println("Iniciar sesión de trabajo como:");
@@ -17,8 +27,7 @@ public class ToyView {
         System.out.println("Gestor de Juguetes (Tipo de sesión: Elfo)");
         System.out.println("1. Añadir juguete");
         System.out.println("2. Ver todos los juguetes");
-        System.out.println("3. Eliminar juguete");
-        System.out.println("4. Cerrar sesión");
+        System.out.println("3. Cerrar sesión");
         System.out.print("Seleccione una opción: ");
     }
 
@@ -30,15 +39,35 @@ public class ToyView {
         System.out.print("Seleccione una opción: ");
     }
 
-    public String getInput(String message, java.util.Scanner scanner) {
+    public String getInput(String message, Scanner scanner) {
         System.out.print(message);
         return scanner.nextLine();
     }
 
-    public void showAllToys(List<Toy> toys) {
-        System.out.println("\nListado de Juguetes:");
-        for (Toy toy : toys) {
-            System.out.println(toy);
+    public void showAllToys() {
+        List<Toy> toys = toyRepository.getAllToys();
+            if (toys.isEmpty()) {
+                System.out.println("No hay juguetes disponibles.");
+            } else {
+                System.out.println("Lista de juguetes:");
+                int goodToyCounter = 1;
+                int badToyCounter = 1;
+
+            for (Toy toy : toys) {
+                String prefix;
+
+                if (toy instanceof GoodToy) {
+                    prefix = "B" + goodToyCounter;
+                    goodToyCounter++;
+                } else if (toy instanceof BadToy) {
+                    prefix = "M" + badToyCounter;
+                    badToyCounter++;
+                } else {
+                    prefix = "X";
+                }
+
+                System.out.println(prefix + ". " + toy.getDetails());
+            }
         }
     }
 

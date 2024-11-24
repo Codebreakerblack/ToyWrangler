@@ -7,6 +7,7 @@ public class GoodToy extends Toy {
 
     public GoodToy(String title, String brand, String recommendedAge, String category) {
         super(title);
+        this.brand = brand;
         this.recommendedAge = recommendedAge;
         this.category = category;
     }
@@ -14,7 +15,7 @@ public class GoodToy extends Toy {
     public String getBrand() {
         return brand;
     }
-    
+
     public void setBrand(String brand) {
         this.brand = brand;
     }
@@ -37,6 +38,7 @@ public class GoodToy extends Toy {
 
     @Override
     public String getDetails() {
-        return super.toString() + ", Marca: "+ brand + ", Edad recomendada: " + recommendedAge + ", Categoría: " + category;
+        return super.toString() + ", Marca: " + brand + ", Edad recomendada: " + recommendedAge + ", Categoría: "
+                + category;
     }
 }

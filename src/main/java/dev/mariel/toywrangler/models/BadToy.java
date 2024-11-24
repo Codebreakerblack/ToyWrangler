@@ -10,6 +10,6 @@ public class BadToy extends Toy {
 
     @Override
     public String getDetails() {
-        return String.format("Title: %s, Content: %s", getTitle(), content);
+        return super.toString() + ", Contenido: " + content;
     }
 }

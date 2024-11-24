@@ -17,8 +17,8 @@ public abstract class Toy {
 
     @Override
     public String toString() {
-        return "Título: " + title ;
+        return "Título: " + title;
     }
-    
+
     public abstract String getDetails();
 }

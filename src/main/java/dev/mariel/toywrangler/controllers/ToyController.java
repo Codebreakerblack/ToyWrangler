@@ -18,31 +18,30 @@ public class ToyController {
     }
 
     public void addGoodToyToInventory(Scanner scanner) {
+        String title = toyView.getInput("\nIngrese el título: ", scanner);
+        String brand = toyView.getInput("Ingrese la marca: ", scanner);
+        String recommendedAge = toyView.getInput("Ingrese la edad recomendada: ", scanner);
+        String category = toyView.getInput("Ingrese la categoria: ", scanner);
 
-            String title = toyView.getInput("\nIngrese el título: ", scanner);
-            String brand = toyView.getInput("Ingrese la marca: ", scanner);
-            String recommendedAge = toyView.getInput("Ingrese la edad recomendada: ", scanner);
-            String category = toyView.getInput("Ingrese la categoria: ", scanner);
+        GoodToy goodToy = new GoodToy(title, brand, recommendedAge, category);
 
-            GoodToy goodToy = new GoodToy(title, brand, recommendedAge, category);
+        toyRepository.addToy(goodToy);
 
-            toyRepository.addToy(goodToy);
+        toyView.showConfirmation("\nJuguete añadido con éxito");
+    }
 
-            toyView.showConfirmation("\nJuguete añadido con éxito");
-        }
+    public void addBadToyToInventory(Scanner scanner) {
+        String title = toyView.getInput("\nIngrese el título: ", scanner);
+        String content = toyView.getInput("Ingrese el contenido: ", scanner);
 
-        public void addBadToyToInventory(Scanner scanner) {
-            String title = toyView.getInput("\nIngrese el título: ", scanner);
-            String content = toyView.getInput("Ingrese el contenido: ", scanner);
-            
-            BadToy badToy = new BadToy(title, content);
+        BadToy badToy = new BadToy(title, content);
 
-            toyRepository.addToy(badToy);
+        toyRepository.addToy(badToy);
 
-             toyView.showConfirmation("\nJuguete añadido con éxito");
-        }
-        
+        toyView.showConfirmation("\nJuguete añadido con éxito");
+    }
+
     public void showAllToys() {
-        toyView.showAllToys(toyRepository.getAllToys());
+        toyView.showAllToys();
     }
 }
